@@ -1,0 +1,37 @@
+type Query {
+  teams: [Team!]!
+  players: [Player!]!
+}
+
+type Player {
+  id: String!
+  firstName: String!
+  lastName: String!
+  jersey: String!
+  team: Team
+}
+
+type Team {
+  id: String!
+  fullName: String!
+  tricode: String!
+  shortName: String!
+  urlName: String!
+  conference: Conference!
+  division: Division!
+  players: [Player!]!
+}
+
+enum Conference {
+  West
+  East
+}
+
+enum Division {
+  Pacific
+  Northwest
+  Southwest
+  Central
+  Southeast
+  Atlantic
+}

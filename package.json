@@ -1,0 +1,31 @@
+{
+  "name": "gql-nba",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "compile": "npm run codegen && tsc",
+    "postinstall": "npm run compile",
+    "start": "npm run compile && node --experimental-specifier-resolution=node ./dist/index.js",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "fmt": "npx prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.0.0",
+    "graphql": "^16.6.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "2.13.7",
+    "@graphql-codegen/introspection": "2.2.1",
+    "@graphql-codegen/typescript": "2.7.4",
+    "@graphql-codegen/typescript-document-nodes": "2.3.4",
+    "@graphql-codegen/typescript-resolvers": "^2.7.4",
+    "@types/node": "^18.11.0",
+    "prettier": "2.7.1",
+    "typescript": "^4.8.4"
+  }
+}
