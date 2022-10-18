@@ -17,8 +17,10 @@ const associate = (fetchedTeams: FetchedTeam[]) => {
   })
 }
 
-const players = async () => {
-  return (await fetchPlayers()).map(associate(await fetchTeams())).map(player)
+const players = async (_, __, { dataSources }) => {
+  return (await dataSources.api.players())
+    .map(associate(await fetchTeams()))
+    .map(player)
 }
 
 export { player }

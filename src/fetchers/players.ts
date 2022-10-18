@@ -14,6 +14,9 @@ type Response = {
   }
 }
 
+/**
+ * @deprecated
+ */
 const fetchPlayers = async () => {
   try {
     const message = await httpGet(
