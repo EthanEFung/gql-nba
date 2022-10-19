@@ -4,9 +4,15 @@ import { readFileSync } from 'fs'
 import NbaAPI from './datasources/nba'
 import resolvers from './resolvers/index'
 
+export interface Context {
+  dataSources: {
+    api: NbaAPI
+  }
+}
+
 const typeDefs = readFileSync('./schema.graphql', { encoding: 'utf-8' })
 
-const server = new ApolloServer({
+const server = new ApolloServer<Context>({
   typeDefs,
   resolvers,
 })

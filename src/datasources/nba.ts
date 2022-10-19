@@ -22,6 +22,7 @@ export type FetchedTeam = {
 
 class NbaAPI extends RESTDataSource {
   override baseURL = 'http://data.nba.net/data/10s/prod/'
+  memoizeGetRequests = true
 
   async players(): Promise<FetchedPlayer[]> {
     type Response = {
