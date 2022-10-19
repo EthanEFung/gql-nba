@@ -1,5 +1,4 @@
-import fetchTeams, { FetchedTeam } from '../fetchers/teams'
-import fetchPlayers, { FetchedPlayer } from '../fetchers/players'
+import { FetchedPlayer, FetchedTeam } from '../datasources/nba'
 import { Team } from '../__generated__/typescript-resolvers'
 import { player } from './players'
 
@@ -28,8 +27,10 @@ const associate = (players: FetchedPlayer[]) => {
   }
 }
 
-const teams = async () => {
-  return (await fetchTeams()).map(team).map(associate(await fetchPlayers()))
+const teams = async (_, __, { dataSources }) => {
+  return (await dataSources.api.teams())
+    .map(team)
+    .map(associate(await dataSources.api.players()))
 }
 
 export { team }

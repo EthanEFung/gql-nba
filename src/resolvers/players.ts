@@ -1,6 +1,5 @@
 import { Player } from '../__generated__/typescript-resolvers'
-import fetchPlayers, { FetchedPlayer } from '../fetchers/players'
-import fetchTeams, { FetchedTeam } from '../fetchers/teams'
+import { FetchedPlayer, FetchedTeam } from '../datasources/nba'
 import { team } from './teams'
 
 const player = ({ teamId, personId, ...rest }: FetchedPlayer): Player => ({
@@ -19,7 +18,7 @@ const associate = (fetchedTeams: FetchedTeam[]) => {
 
 const players = async (_, __, { dataSources }) => {
   return (await dataSources.api.players())
-    .map(associate(await fetchTeams()))
+    .map(associate(await dataSources.api.teams()))
     .map(player)
 }
 
